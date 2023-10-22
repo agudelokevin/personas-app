@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <h1>Commune List</h1>
-        
+        <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
         <table class="table">
             <thead>
                 <tr>
@@ -31,8 +31,7 @@
                     <tr>
                         <th scope="row">{{$comuna->comu_codi}}</th>
                         <td>{{$comuna->comu_nomb}}</td>
-                        <td>{{$comuna->muni_codi}}</td>
-                        <td><span>Action</span></td>
+                        <td>{{$comuna->municipio->muni_nomb ?? 'Municipio Vacio'}}</td>
                     </tr>
                 @endforeach
             </tbody>

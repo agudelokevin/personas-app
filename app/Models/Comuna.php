@@ -14,4 +14,9 @@ class Comuna extends Model
     protected $primarykey = 'comu_codi';
     public $timestamps = false;
 
+    public function municipio(){
+        return $this->belongsTo(Municipio::class,'muni_codi','muni_codi');
+    }
+    
+
 }

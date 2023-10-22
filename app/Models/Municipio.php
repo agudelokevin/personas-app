@@ -11,4 +11,8 @@ class Municipio extends Model
     protected $table ="tb_municipio";
     protected $primarykey = "muni_codi";
     public $timestamps = false;
+    
+    public function comunas(){
+        return $this->hasMany(Comuna::class);
+    }
 }
