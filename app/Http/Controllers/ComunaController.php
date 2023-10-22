@@ -60,19 +60,28 @@ class ComunaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($comu_codi)
+    public function edit($id)
     {
-        
+        $comuna = Comuna::find($id);
+        $municipios = DB::table('tb_municipio')
+        ->orderBy('muni_nomb')
+        ->get(); 
+        return view('comunas.edit', ['comuna' => $comuna, 'municipios' => $municipios]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $comu_codi)
+    public function update(Request $request, $id)
     {
-    
+        $comuna = Comuna::find($id);
 
-    
+        $comuna->comu_nomb = $request->name;
+        $comuna->muni_codi = $request->code;
+        $comuna->save();
+
+
+        return redirect()->route('comunas.index') ;
     }
 
     /**
