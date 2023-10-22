@@ -24,7 +24,7 @@ Route::get('/comunas/create', [ComunaController::class, 'create'])->name('comuna
 Route::put('/comunas/{comuna}', [ComunaController::class, 'update'])->name('comunas.update');
 Route::get('/comunas/{comuna}/edit', [ComunaController::class, 'edit'])->name('comunas.edit');
 Route::delete('/comunas/{comuna}', [ComunaController::class, 'destroy'])->name('comunas.destroy');
-Route::get('/paises', [PaisController::class, 'index']);
-Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
-Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
-Route::get('/paises/create', [PaisController::class, 'create'])->name('paises.create');
+//Route::get('/paises', [PaisController::class, 'index']);
+//Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
+//Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
+//Route::get('/paises/create', [PaisController::class, 'create'])->name('paises.create');
