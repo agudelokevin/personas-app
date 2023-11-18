@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ComunaController;
-use App\Http\Controllers\PaisController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,21 +9,23 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/comunas', [ComunaController::class, 'index'])->name('comunas.index');
-Route::post('/comunas', [ComunaController::class, 'store'])->name('comunas.store');
-Route::get('/comunas/create', [ComunaController::class, 'create'])->name('comunas.create');
-Route::put('/comunas/{comuna}', [ComunaController::class, 'update'])->name('comunas.update');
-Route::get('/comunas/{comuna}/edit', [ComunaController::class, 'edit'])->name('comunas.edit');
-Route::delete('/comunas/{comuna}', [ComunaController::class, 'destroy'])->name('comunas.destroy');
-//Route::get('/paises', [PaisController::class, 'index']);
-//Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
-//Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
-//Route::get('/paises/create', [PaisController::class, 'create'])->name('paises.create');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
